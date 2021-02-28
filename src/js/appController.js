@@ -91,9 +91,9 @@ define(['knockout',
 
       self.navData([
         { path: '', redirect: 'login' },
-        { path: 'login', detail: { label: 'Login', iconClass: 'oj-ux-ico-bar-chart' } },
-        { path: 'tipoCadastro', detail: { label: 'Cadastros', iconClass: 'oj-ux-ico-information-s'} },
-        { path: 'cadastro', detail: { label: 'Cadastro', iconClass: 'oj-ux-ico-information-s' } }
+        { path: 'login', detail: { label: 'Login', iconClass: 'oj-navigationlist-item-icon demo-icon-font-24 demo-home-icon-24' } },
+        { path: 'tipoCadastro', detail: { label: 'Cadastros', iconClass: 'oj-navigationlist-item-icon demo-icon-font-24 demo-library-icon-24'} },
+        { path: 'cadastro', detail: { label: 'Cadastro', iconClass: 'oj-navigationlist-item-icon demo-icon-font-24 demo-edit-icon-24' } }
       ]);
       // Router setup
       var router = new CoreRouter(self.navData(), {

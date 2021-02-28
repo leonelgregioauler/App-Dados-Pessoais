@@ -40,7 +40,7 @@
         <div>
           <oj-form-layout max-columns="1" direction="row">
             <oj-bind-if test="[[exibeIncluirUsuario() == true || exibeLoginUsuario() == true || exibeTrocarSenhaUsuario() == true]]"> 
-              <oj-input-text id="usuario" value="{{nomeUsuario}}" label-hint="Informe o nome do Usuário" onkeyup="convertTextToUpperCase(this)" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-text>
+              <oj-input-text id="usuario" value="{{nomeUsuario}}" label-hint="Informe o nome do Usuário" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-text>
               <oj-bind-if test="[[!exibeTrocarSenhaUsuario() == true ]]">
                 <oj-input-password id="senha" value="{{senhaUsuario}}" label-hint="Informe a senha" on-raw-value-changed="[[handleRawPasswordChanged]]"></oj-input-password>
               </oj-bind-if>

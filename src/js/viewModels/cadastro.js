@@ -179,13 +179,13 @@ define([
         )
       );
       setTimeout(function () {
-        self.exibe(true);
         var items = self.dataCadastro();
         var array = items.map(function (e) {
           return e.idCadastro;
         });
         self.lastItemId = Math.max.apply(null, array);
         self.dataProviderCadastro = new ArrayDataProvider(self.dataCadastro, { keyAttributes: "idCadastro" });
+        self.exibe(true);
       }, 1500);
     };
     self.dataProviderCadastro = new ArrayDataProvider(self.dataCadastro, { keyAttributes: "idCadastro" });
@@ -255,22 +255,66 @@ define([
                                 , self.lojasEcommerce() );
       self.exibe(false);
       self.consultaCadastro();
-      //self.tipoCadastro("");
+      
       self.descricaoCadastro("");
+      self.dataInclusao("");
+      self.nomePessoa("");
+      self.dataNascimento("");
+      self.CPF("");
+      self.RG("");
+      self.orgaoEmissor("");
+      self.UF("");
+      self.dataEmissaoRG("");
+      self.nomePai("");
+      self.nomeMae("");
+      self.PIS("");
+      self.tituloEleitor("");
+      self.zona("");
+      self.sessao("");
+      self.dataEmissaoTituloEleitoral("");
+      self.CNH("");
+      self.validadeCNH("");
+      self.primeiraHabilitacao("");
+      self.categoriaCNH("");
+      self.dataEmissaoCNH("");
+      self.numeroCartaoSUS("");
+      self.numeroCarteiraTrabalho("");
+      self.operadoraPlanoSaude("");
+      self.numeroCartao("");
+      self.placaVeiculo("");
+      self.RENAVAM("");
+      self.nomeBanco("");
+      self.agencia("");
+      self.contaCorrente("");
+      self.contaPoupanca("");
+      self.usuarioInternetBanking("");
+      self.senhaInternetBanking("");
+      self.usuarioAplicativo("");
+      self.senhaAplicativo("");
+      self.email("");
+      self.skype("");
+      self.google("");
+      self.facebook("");
+      self.instagram("");
+      self.linkedIn("");
+      self.tvAssinatura("");
+      self.internet("");
+      self.certificadoDigital("");
+      self.lojasEcommerce("");
     }.bind(self);
 
     self.updateSelected = function () {
       var itemToReplace = self.dataCadastro()[self.currentIndex];
       self.dataCadastro.splice(self.currentIndex, 1, {
-        value: itemToReplace.value,   // ou itemToReplace.idCadastro
+        value: itemToReplace.idCadastro,
         label: self.descricaoCadastro(),
-        //idTipoCadastro: self.valorItem().data.value,
-        //nomeTipoCadastro: self.valorItem().data.label,
-        idTipoCadastro: itemToReplace.idTipoCadastro
+        idTipoCadastro: itemToReplace.idTipoCadastro, 
+        descricaoCadastro: self.descricaoCadastro(), 
+        dataInclusao: self.dataInclusao()
       });
-      BancoDeDados.atualizaCadastro( itemToReplace.value
-                                   , idTipoCadastro   // self.idTipoCadastro
-                                   , itemToAdd
+      BancoDeDados.atualizaCadastro( itemToReplace.idCadastro
+                                   , self.idTipoCadastro
+                                   , self.descricaoCadastro()
                                    , self.dataInclusao()
                                    , self.nomePessoa()
                                    , self.dataNascimento()
@@ -281,27 +325,20 @@ define([
                                    , self.dataEmissaoRG()
                                    , self.nomePai()
                                    , self.nomeMae()
- 
                                    , self.PIS()
- 
                                    , self.tituloEleitor()
                                    , self.zona()
                                    , self.sessao()
                                    , self.dataEmissaoTituloEleitoral()
- 
                                    , self.CNH()
                                    , self.validadeCNH()
                                    , self.primeiraHabilitacao()
                                    , self.categoriaCNH()
                                    , self.dataEmissaoCNH()
- 
-                                   , self.numeroCartaoSUS()
- 
+                                   , self.numeroCartaoSUS() 
                                    , self.numeroCarteiraTrabalho()
- 
                                    , self.operadoraPlanoSaude()
                                    , self.numeroCartao()
- 
                                    , self.placaVeiculo()
                                    , self.RENAVAM()
                                    , self.nomeBanco()
@@ -311,8 +348,7 @@ define([
                                    , self.usuarioInternetBanking()
                                    , self.senhaInternetBanking()
                                    , self.usuarioAplicativo()
-                                   , self.senhaAplicativo()
- 
+                                   , self.senhaAplicativo() 
                                    , self.email()
                                    , self.skype()
                                    , self.google()
@@ -323,6 +359,8 @@ define([
                                    , self.internet()
                                    , self.certificadoDigital()
                                    , self.lojasEcommerce() );
+      self.exibe(false);
+      self.consultaCadastro();                                   
     }.bind(self);
 
     self.removeSelected = function () {
@@ -334,8 +372,53 @@ define([
       BancoDeDados.removeCadastro(itemToRemove.idCadastro);
       self.exibe(false);
       self.consultaCadastro();
-      //self.tipoCadastro("");
+      
       self.descricaoCadastro("");
+      self.dataInclusao("");
+      self.nomePessoa("");
+      self.dataNascimento("");
+      self.CPF("");
+      self.RG("");
+      self.orgaoEmissor("");
+      self.UF("");
+      self.dataEmissaoRG("");
+      self.nomePai("");
+      self.nomeMae("");
+      self.PIS("");
+      self.tituloEleitor("");
+      self.zona("");
+      self.sessao("");
+      self.dataEmissaoTituloEleitoral("");
+      self.CNH("");
+      self.validadeCNH("");
+      self.primeiraHabilitacao("");
+      self.categoriaCNH("");
+      self.dataEmissaoCNH("");
+      self.numeroCartaoSUS("");
+      self.numeroCarteiraTrabalho("");
+      self.operadoraPlanoSaude("");
+      self.numeroCartao("");
+      self.placaVeiculo("");
+      self.RENAVAM("");
+      self.nomeBanco("");
+      self.agencia("");
+      self.contaCorrente("");
+      self.contaPoupanca("");
+      self.usuarioInternetBanking("");
+      self.senhaInternetBanking("");
+      self.usuarioAplicativo("");
+      self.senhaAplicativo("");
+      self.email("");
+      self.skype("");
+      self.google("");
+      self.facebook("");
+      self.instagram("");
+      self.linkedIn("");
+      self.tvAssinatura("");
+      self.internet("");
+      self.certificadoDigital("");
+      self.lojasEcommerce("");
+      
       //self.dataCadastro(cadastroRestante);
       //self.dataProviderCadastro = new ArrayDataProvider(self.dataCadastro, { keyAttributes: "idTipoCompra" } );
       //self.exibe(true);
