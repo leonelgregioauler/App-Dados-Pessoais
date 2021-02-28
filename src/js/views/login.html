@@ -1,0 +1,109 @@
+<style>
+
+  .oj-button-label {
+    color: #ffffff;
+  }
+
+  .esqueceu-sua-senha {
+    margin-left: 25%;
+    margin-right: 25%;
+  }
+
+  oj-form-layout {
+    max-width: 100% !important;
+    margin: 30% 0% 30% 0%;
+    height: 40%;
+  }
+
+
+</style>
+<!--
+ Copyright (c) 2014, 2020, Oracle and/or its affiliates.
+ Licensed under The Universal Permissive License (UPL), Version 1.0
+ as shown at https://oss.oracle.com/licenses/upl/
+ -->
+<div class="oj-hybrid-applayout-page">
+  <div class="oj-applayout-fixed-top">
+      <!--
+       ** Oracle JET V9.1.0 hybrid mobile application header pattern.
+       ** Please see the Oracle JET Cookbook App Shell: Hybrid Mobile demos for
+       ** more information on how to use this pattern.
+    -->
+    <header role="banner" class="oj-hybrid-applayout-header">
+      <oj-module config="[[headerConfig]]"></oj-module>
+    </header>
+  </div>
+  <!-- This is where your main page content will be loaded -->
+  <div class="oj-applayout-content">
+    <div role="main" class="oj-hybrid-applayout-content">
+      <div class="oj-hybrid-padding">
+        <div>
+          <oj-form-layout max-columns="1" direction="row">
+            <oj-bind-if test="[[exibeIncluirUsuario() == true || exibeLoginUsuario() == true || exibeTrocarSenhaUsuario() == true]]"> 
+              <oj-input-text id="usuario" value="{{nomeUsuario}}" label-hint="Informe o nome do Usuário" onkeyup="convertTextToUpperCase(this)" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-text>
+              <oj-bind-if test="[[!exibeTrocarSenhaUsuario() == true ]]">
+                <oj-input-password id="senha" value="{{senhaUsuario}}" label-hint="Informe a senha" on-raw-value-changed="[[handleRawPasswordChanged]]"></oj-input-password>
+              </oj-bind-if>
+              <oj-bind-if test="[[exibeTrocarSenhaUsuario() == true ]]">
+                <oj-input-password id="novaSenha" value="{{novaSenhaUsuario}}" label-hint="Informe a nova senha" on-raw-value-changed="[[handleRawPasswordChanged]]"></oj-input-password>
+              </oj-bind-if>
+              <oj-bind-if test="[[exibeIncluirUsuario() == true || exibeTrocarSenhaUsuario() == true ]]">
+                <oj-input-password id="confirma-senha" value="{{confirmaSenhaUsuario}}" label-hint="Confirme a senha" on-raw-value-changed="[[handleRawPasswordChanged]]"></oj-input-password>
+              </oj-bind-if>
+              <oj-bind-if test="[[exibeIncluirUsuario() == true]]">
+                <oj-input-text id="chaveAcesso" value="{{chaveAcesso}}" label-hint="Utilizar para troca de senha" readonly="true"></oj-input-text>
+              </oj-bind-if>
+              <oj-bind-if test="[[exibeTrocarSenhaUsuario() == true ]]">
+                <oj-input-text id="chaveAcessoTrocarSenha" value="{{chaveAcesso}}" label-hint="Informe a chave de acesso recebida ao criar o usuário" readonly="false"></oj-input-text>
+                <oj-button 
+                  id="novaSenhaButton" 
+                  style="width: 92%; margin: 0% 4% 2% 4%; background-color: rgb(240, 177, 60); border-radius: 5px;"
+                  class="oj-button-lg" 
+                  on-oj-action="[[atualizarNovaSenhaUsuario]]" 
+                  >Atualizar Nova Senha
+                </oj-button>
+              </oj-bind-if>
+              <oj-bind-if test="[[exibeIncluirUsuario() == true]]">
+                <oj-button 
+                  id="addButton" 
+                  style="width: 92%; margin: 0% 4% 2% 4%; background-color: green; border-radius: 5px;"
+                  class="oj-button-lg" 
+                  on-oj-action="[[addItem]]" 
+                  disabled="[[isTextAndPasswordisEmpty]]"
+                >Adicionar
+                </oj-button>
+              </oj-bind-if>
+            </oj-bind-if>
+            <oj-bind-if test="[[exibeLoginUsuario() == true && exibeTrocarSenhaUsuario() == false && exibeIncluirUsuario() == false]]">
+              <oj-button 
+                id="loginButton" 
+                style="width: 92%; margin: 0% 4% 2% 4%; background-color: green; border-radius: 5px;"
+                class="oj-button-lg" 
+                on-oj-action="[[login]]" 
+                >Login
+              </oj-button>
+              <a href="#" class="esqueceu-sua-senha" on-click="[[trocarSenhaUsuario]]"> Esqueceu sua senha ? </a>
+            </oj-bind-if>
+            <!-- <oj-bind-if test="[[exibeBoasVindas() == true]]">
+              <div class="boas-vindas">
+                <h4>
+                  <div id="inlineMessages">
+                    <oj-messages messages="[[messagesDataprovider]]"  display-options.category="none">
+                    </oj-messages>
+                  </div>
+                </h4>
+              </div>
+              <img src="css/images/fundo-jet.png" type="image/x-icon"></img>
+            </oj-bind-if> -->
+            <oj-bind-if test="[[exibeMensagemAcesso() == true]]">
+              <div id="inlineMessages">
+                <oj-messages messages="[[messagesDataprovider]]"  display-options.category="none">
+                </oj-messages>
+              </div>
+            </oj-bind-if>
+          </oj-form-layout>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

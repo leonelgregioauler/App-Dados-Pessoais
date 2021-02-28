@@ -1,0 +1,156 @@
+<style>
+
+  .demo-container
+    {
+    position: relative;
+    width: 100%;
+    height: 800px;
+    overflow: hidden;
+  }
+  
+  .demo-panel
+  {
+    height: calc(100% - 100px);
+  }
+  
+  .demo-page {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    padding: 10px;
+    box-sizing: border-box;
+    overflow: auto;
+    transition: transform 0.25s; 
+  }
+  
+  .demo-page1-hide {
+    transform: translate3d(-100%, 0, 0); 
+  }
+  
+  .demo-page2-hide {
+    transform: translate3d(100%, 0, 0); 
+  }
+
+  .oj-button-label {
+    color: #ffffff;
+  }
+
+  .tipo-cadastro {
+    font-size: large;
+  }
+
+  oj-form-layout {
+    max-width: 100% !important;
+  }
+
+  oj-list-view { 
+    margin-bottom: 150px;
+  }
+
+</style>
+<!--
+ Copyright (c) 2014, 2019, Oracle and/or its affiliates.
+ The Universal Permissive License (UPL), Version 1.0
+ -->
+<div class="oj-hybrid-applayout-page">
+  <div class="oj-applayout-fixed-top">
+    <!--
+      ** Oracle JET V8.0.0 hybrid mobile application header pattern.
+      ** Please see the Oracle JET Cookbook App Shell: Hybrid Mobile demos for
+      ** more information on how to use this pattern.
+    -->
+    <header role="banner" class="oj-hybrid-applayout-header">
+      <oj-module config="[[headerConfig]]"></oj-module>
+    </header>
+  </div>
+  <!-- This is where your main page content will be loaded -->
+  <div class="oj-applayout-content">
+    <div role="main" class="oj-hybrid-applayout-content">
+      <div class="oj-hybrid-padding">
+        <h1></h1>
+        <div>
+          <!-- <oj-form-layout max-columns="1" direction="row">
+            <oj-input-text 
+              id="tipo-cadastro"
+              value="{{currentItem}}" 
+              label-hint="Informe o nome do tipo de cadastro" 
+              on-raw-value-changed="[[handleRawValueChanged]]">
+            </oj-input-text>
+            <oj-button 
+              id="addButton" 
+              style="width: 40%; float: right; background-color: green; border-radius: 5px;"
+              class="oj-button-lg" 
+              on-oj-action="[[addItem]]" 
+              disabled="[[isTextAndSelecionFilled]]"
+              >Adicionar
+            </oj-button>
+          </oj-form-layout> -->
+        </div>
+
+        <oj-tab-bar edge="end" data="[[navCadastroDataProvider]]" selection="{{selection.path}}">
+          <template slot="itemTemplate" data-oj-as="item">
+            <oj-bind-if test="[[item.data.detail]]">
+              <li :id="[[item.data.path]]">
+                <a href="#">
+                  <span :class="[[item.data.detail.iconClass]]"></span>
+                  <oj-bind-text value="[[item.data.detail.label]]"></oj-bind-text>
+                </a>
+              </li>
+            </oj-bind-if>
+          </template>
+        </oj-tab-bar>
+
+        <oj-bind-if test="[[exibe]]">
+          <div id="listviewContainer" class="demo-container">
+            <oj-list-view 
+              id="listview" 
+              aria-label="drill down list"
+              selection-mode="single" 
+              data="[[dataProviderTipoCadastro]]"
+              selected="{{selectedItems}}"
+              on-current-item-changed="[[handleCurrentItemChanged]]"
+              on-oj-item-action="[[selectionChangedHandler]]"
+              >
+              <template slot="itemTemplate" data-oj-as="item">
+                <li>
+                  <oj-list-item-layout>
+                      <span class="oj-typography-body-md oj-text-color-primary">
+                        <div class="tipo-cadastro">
+                          <oj-bind-text value="[[item.data.label]]"></oj-bind-text>
+                        </div>
+                      </span>
+                      <span slot="leading" :class="[[getIconContainerClass(item.data.icone)]]" role="img">
+                        <span class="oj-icon-circle-inner">
+                          <span :class="[[getIconClass(item.data.icone)]]"></span>
+                        </span>
+                      </span>
+                  </oj-list-item-layout>
+                </li>
+              </template>
+            </oj-list-view>
+          </div>
+        </oj-bind-if>  
+      </div>
+      <!-- <footer style="position: absolute; bottom: 20px; width: 100%">
+        <oj-button 
+          id="updateButton" 
+          style="width: 92%; margin: 0% 4% 2% 4%; background-color: rgb(240, 177, 60); border-radius: 5px;" 
+          class="oj-button-lg" 
+          on-oj-action="[[updateSelected]]" 
+          disabled="[[isTextOrSelectionEmpty]]"
+          >Atualizar
+        </oj-button>
+        <oj-button 
+          id="removeButton" 
+          style="width: 92%; margin: 0% 4% 2% 4%; background-color: #C80000; border-radius: 5px;" 
+          class="oj-button-lg" 
+          on-oj-action="[[removeSelected]]" 
+          disabled="[[isSelectionEmpty]]"
+          >Excluir
+        </oj-button>
+      </footer> -->
+    </div>
+  </div>
+</div>
