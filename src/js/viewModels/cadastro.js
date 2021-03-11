@@ -7,6 +7,7 @@ define([
   "../bancoDeDados",
   "ojs/ojarraydataprovider",
   "ojs/ojknockout-keyset",
+  "ojs/ojconverterutils-i18n",
   "ojs/ojknockout",
   "ojs/ojinputtext",
   "ojs/ojlabel",
@@ -15,7 +16,9 @@ define([
   "ojs/ojmessaging",
   "ojs/ojlistview",
   "ojs/ojlistitemlayout",
-  "ojs/ojselectsingle"
+  "ojs/ojselectsingle",
+  "ojs/ojdialog",
+  "ojs/ojdatetimepicker"
 ], function (
   ko,
   app,
@@ -54,30 +57,23 @@ define([
     self.dataEmissaoRG = ko.observable("");
     self.nomePai = ko.observable("");
     self.nomeMae = ko.observable("");
-
     self.PIS = ko.observable("");
-    
     self.tituloEleitor = ko.observable("");
     self.zona = ko.observable("");
     self.sessao = ko.observable("");
     self.dataEmissaoTituloEleitoral = ko.observable("");
-
     self.CNH = ko.observable("");
     self.validadeCNH = ko.observable("");
     self.primeiraHabilitacao = ko.observable("");
     self.categoriaCNH = ko.observable("");
     self.dataEmissaoCNH = ko.observable("");
-
     self.numeroCartaoSUS = ko.observable("");
-
     self.numeroCarteiraTrabalho = ko.observable("");
-
     self.operadoraPlanoSaude = ko.observable("");
     self.numeroCartao = ko.observable("");
-
+    self.validadeCarteira = ko.observable("");
     self.placaVeiculo = ko.observable("");
     self.RENAVAM = ko.observable("");
-
     self.nomeBanco = ko.observable("");
     self.agencia = ko.observable("");
     self.contaCorrente = ko.observable("");
@@ -86,19 +82,29 @@ define([
     self.senhaInternetBanking = ko.observable("");
     self.usuarioAplicativo = ko.observable("");
     self.senhaAplicativo = ko.observable("");
-
     self.email = ko.observable("");
+    self.usuarioeMail = ko.observable("");
+    self.senhaeMail = ko.observable("");
     self.skype = ko.observable("");
+    self.senhaSkype = ko.observable("");
     self.google = ko.observable("");
+    self.senhaGoogle = ko.observable("");
     self.facebook = ko.observable("");
+    self.senhaFacebook = ko.observable("");
     self.instagram = ko.observable("");
+    self.senhaInstagram = ko.observable("");
     self.linkedIn = ko.observable("");
+    self.senhaLinkedIn = ko.observable("");
     self.tvAssinatura = ko.observable("");
+    self.usuarioTvAssinatura = ko.observable("");
+    self.senhaTvAssinatura = ko.observable("");
     self.internet = ko.observable("");
+    self.senhaInternet = ko.observable("");
+    self.lojaEcommerce = ko.observable("");
+    self.usuarioLojaEcommerce = ko.observable("");
+    self.senhaLojaEcommerce = ko.observable("");
     self.certificadoDigital = ko.observable("");
-    self.lojasEcommerce = ko.observable("");
-
-
+    self.PIN = ko.observable("");
     self.dataCadastro = ko.observableArray([]);
     self.dataTipoCadastro = ko.observableArray([]);
     self.exibe = ko.observable(false); 
@@ -152,6 +158,7 @@ define([
                  , C.numeroCarteiraTrabalho
                  , C.operadoraPlanoSaude
                  , C.numeroCartao
+                 , C.validadeCarteira
                  , C.placaVeiculo
                  , C.RENAVAM
                  , C.nomeBanco
@@ -163,15 +170,28 @@ define([
                  , C.usuarioAplicativo
                  , C.senhaAplicativo
                  , C.eMail
+                 , C.usuarioeMail
+                 , C.senhaeMail
                  , C.skype
+                 , C.senhaSkype
                  , C.google
+                 , C.senhaGoogle
                  , C.facebook
+                 , C.senhaFacebook
                  , C.instagram
+                 , C.senhaInstagram
                  , C.linkedIn
+                 , C.senhaLinkedIn
                  , C.tvAssinatura
+                 , C.usuarioTvAssinatura
+                 , C.senhaTvAssinatura
                  , C.internet
+                 , C.senhaInternet
+                 , C.lojaEcommerce
+                 , C.usuarioLojaEcommerce
+                 , C.senhaLojaEcommerce
                  , C.certificadoDigital
-                 , C.lojasEcommerce
+                 , C.PIN
             FROM CADASTROS C
                , TIPOSCADASTROS T
             WHERE C.idTipoCadastro = T.idTipoCadastro
@@ -233,6 +253,7 @@ define([
                                 , self.numeroCarteiraTrabalho()
                                 , self.operadoraPlanoSaude()
                                 , self.numeroCartao()
+                                , self.validadeCarteira()
                                 , self.placaVeiculo()
                                 , self.RENAVAM()
                                 , self.nomeBanco()
@@ -244,18 +265,30 @@ define([
                                 , self.usuarioAplicativo()
                                 , self.senhaAplicativo()
                                 , self.email()
+                                , self.usuarioeMail()
+                                , self.senhaeMail()
                                 , self.skype()
+                                , self.senhaSkype()
                                 , self.google()
+                                , self.senhaGoogle()
                                 , self.facebook()
+                                , self.senhaFacebook()
                                 , self.instagram()
+                                , self.senhaInstagram()
                                 , self.linkedIn()
+                                , self.senhaLinkedIn()
                                 , self.tvAssinatura()
+                                , self.usuarioTvAssinatura()
+                                , self.senhaTvAssinatura()
                                 , self.internet()
+                                , self.senhaInternet()
+                                , self.lojaEcommerce()
+                                , self.usuarioLojaEcommerce()
+                                , self.senhaLojaEcommerce()
                                 , self.certificadoDigital()
-                                , self.lojasEcommerce() );
+                                , self.PIN() );
       self.exibe(false);
       self.consultaCadastro();
-      
       self.descricaoCadastro("");
       self.dataInclusao("");
       self.nomePessoa("");
@@ -281,6 +314,7 @@ define([
       self.numeroCarteiraTrabalho("");
       self.operadoraPlanoSaude("");
       self.numeroCartao("");
+      self.validadeCarteira("");
       self.placaVeiculo("");
       self.RENAVAM("");
       self.nomeBanco("");
@@ -292,15 +326,28 @@ define([
       self.usuarioAplicativo("");
       self.senhaAplicativo("");
       self.email("");
+      self.usuarioeMail("");
+      self.senhaeMail("");
       self.skype("");
+      self.senhaSkype("");
       self.google("");
+      self.senhaGoogle("");
       self.facebook("");
+      self.senhaFacebook("");
       self.instagram("");
+      self.senhaInstagram("");
       self.linkedIn("");
+      self.senhaLinkedIn("");
       self.tvAssinatura("");
+      self.usuarioTvAssinatura("");
+      self.senhaTvAssinatura("");
       self.internet("");
+      self.senhaInternet("");
+      self.lojaEcommerce("");
+      self.usuarioLojaEcommerce("");
+      self.senhaLojaEcommerce("");
       self.certificadoDigital("");
-      self.lojasEcommerce("");
+      self.PIN("");
     }.bind(self);
 
     self.updateSelected = function () {
@@ -339,6 +386,7 @@ define([
                                    , self.numeroCarteiraTrabalho()
                                    , self.operadoraPlanoSaude()
                                    , self.numeroCartao()
+                                   , self.validadeCarteira()
                                    , self.placaVeiculo()
                                    , self.RENAVAM()
                                    , self.nomeBanco()
@@ -350,18 +398,38 @@ define([
                                    , self.usuarioAplicativo()
                                    , self.senhaAplicativo() 
                                    , self.email()
+                                   , self.usuarioeMail()
+                                   , self.senhaeMail()
                                    , self.skype()
+                                   , self.senhaSkype()
                                    , self.google()
+                                   , self.senhaGoogle()
                                    , self.facebook()
+                                   , self.senhaFacebook()
                                    , self.instagram()
+                                   , self.senhaInstagram()
                                    , self.linkedIn()
+                                   , self.senhaLinkedIn()
                                    , self.tvAssinatura()
+                                   , self.usuarioTvAssinatura()
+                                   , self.senhaTvAssinatura()
                                    , self.internet()
+                                   , self.senhaInternet()
+                                   , self.lojaEcommerce()
+                                   , self.usuarioLojaEcommerce()
+                                   , self.senhaLojaEcommerce() 
                                    , self.certificadoDigital()
-                                   , self.lojasEcommerce() );
+                                   , self.PIN() );
       self.exibe(false);
       self.consultaCadastro();                                   
     }.bind(self);
+
+    self.close = function(event) {
+      document.getElementById("modalDialogExcluirCadastro").close();
+    }
+    self.open = function(event) {
+      document.getElementById("modalDialogExcluirCadastro").open();
+    }
 
     self.removeSelected = function () {
       const items = self.dataCadastro();
@@ -374,7 +442,7 @@ define([
       self.consultaCadastro();
       
       self.descricaoCadastro("");
-      self.dataInclusao("");
+      //self.dataInclusao("");
       self.nomePessoa("");
       self.dataNascimento("");
       self.CPF("");
@@ -398,6 +466,7 @@ define([
       self.numeroCarteiraTrabalho("");
       self.operadoraPlanoSaude("");
       self.numeroCartao("");
+      self.validadeCarteira("");
       self.placaVeiculo("");
       self.RENAVAM("");
       self.nomeBanco("");
@@ -409,16 +478,30 @@ define([
       self.usuarioAplicativo("");
       self.senhaAplicativo("");
       self.email("");
+      self.usuarioeMail("");
+      self.senhaeMail("");
       self.skype("");
+      self.senhaSkype("");
       self.google("");
+      self.senhaGoogle("");
       self.facebook("");
+      self.senhaFacebook("");
       self.instagram("");
+      self.senhaInstagram("");
       self.linkedIn("");
+      self.senhaLinkedIn("");
       self.tvAssinatura("");
+      self.usuarioTvAssinatura("");
+      self.senhaTvAssinatura("");
       self.internet("");
+      self.senhaInternet("");
+      self.lojaEcommerce("");
+      self.usuarioLojaEcommerce("");
+      self.senhaLojaEcommerce("");
       self.certificadoDigital("");
-      self.lojasEcommerce("");
-      
+      self.PIN("");
+
+      self.close();
       //self.dataCadastro(cadastroRestante);
       //self.dataProviderCadastro = new ArrayDataProvider(self.dataCadastro, { keyAttributes: "idTipoCompra" } );
       //self.exibe(true);
@@ -461,26 +544,40 @@ define([
           self.numeroCarteiraTrabalho(items[i].numeroCarteiraTrabalho);
           self.operadoraPlanoSaude(items[i].operadoraPlanoSaude);
           self.numeroCartao(items[i].numeroCartao);
+          self.validadeCarteira(items[i].validadeCarteira);
           self.placaVeiculo(items[i].placaVeiculo);
           self.RENAVAM(items[i].RENAVAM);
-          self.nomeBanco(items[i].numeroCarteiraTrabalho);
-          self.agencia(items[i].numeroCarteiraTrabalho);
-          self.contaCorrente(items[i].numeroCarteiraTrabalho);
-          self.contaPoupanca(items[i].numeroCarteiraTrabalho);
-          self.usuarioInternetBanking(items[i].numeroCarteiraTrabalho);
-          self.senhaInternetBanking(items[i].numeroCarteiraTrabalho);
-          self.usuarioAplicativo(items[i].numeroCarteiraTrabalho);
-          self.senhaAplicativo(items[i].numeroCarteiraTrabalho);
-          self.email(items[i].numeroCarteiraTrabalho);
-          self.skype(items[i].numeroCarteiraTrabalho);
-          self.google(items[i].numeroCarteiraTrabalho);
-          self.facebook(items[i].numeroCarteiraTrabalho);
-          self.instagram(items[i].numeroCarteiraTrabalho);
-          self.linkedIn(items[i].numeroCarteiraTrabalho);
-          self.tvAssinatura(items[i].numeroCarteiraTrabalho);
-          self.internet(items[i].numeroCarteiraTrabalho);
-          self.certificadoDigital(items[i].numeroCarteiraTrabalho);
-          self.lojasEcommerce(items[i].numeroCarteiraTrabalho);
+          self.nomeBanco(items[i].nomeBanco);
+          self.agencia(items[i].agencia);
+          self.contaCorrente(items[i].contaCorrente);
+          self.contaPoupanca(items[i].contaPoupanca);
+          self.usuarioInternetBanking(items[i].usuarioInternetBanking);
+          self.senhaInternetBanking(items[i].senhaInternetBanking);
+          self.usuarioAplicativo(items[i].usuarioAplicativo);
+          self.senhaAplicativo(items[i].senhaAplicativo);
+          self.email(items[i].eMail);
+          self.usuarioeMail(items[i].usuarioeMail);
+          self.senhaeMail(items[i].senhaeMail);
+          self.skype(items[i].skype);
+          self.senhaSkype(items[i].senhaSkype);
+          self.google(items[i].google);
+          self.senhaGoogle(items[i].senhaGoogle);
+          self.facebook(items[i].facebook);
+          self.senhaFacebook(items[i].senhaFacebook);
+          self.instagram(items[i].instagram);
+          self.senhaInstagram(items[i].senhaInstagram);
+          self.linkedIn(items[i].linkedIn);
+          self.senhaLinkedIn(items[i].senhaLinkedIn);
+          self.tvAssinatura(items[i].tvAssinatura);
+          self.usuarioTvAssinatura(items[i].usuarioTvAssinatura);
+          self.senhaTvAssinatura(items[i].senhaTvAssinatura);
+          self.internet(items[i].internet);
+          self.senhaInternet(items[i].senhaInternet);
+          self.lojaEcommerce(items[i].lojaEcommerce);
+          self.usuarioLojaEcommerce(items[i].usuarioLojaEcommerce);
+          self.senhaLojaEcommerce(items[i].senhaLojaEcommerce);
+          self.certificadoDigital(items[i].certificadoDigital);
+          self.PIN(items[i].PIN);
           break;
         }
       }

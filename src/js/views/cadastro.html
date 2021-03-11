@@ -4,6 +4,14 @@
     color: #ffffff;
   }
 
+  #modalDialogExcluirCadastro #okButton .oj-button-label {
+    background-color: rgb(58, 54, 50);
+  }
+
+  #modalDialogExcluirCadastro #cancelButton .oj-button-label {
+    background-color: #979899;
+  }
+
   .nome-tipo-cadastro {
     text-align: right;
     font-style: italic;
@@ -64,18 +72,18 @@
             </oj-bind-if> -->
 
             <!-- Para todos os cadastros -->
-            <oj-input-text id="descricaoCadastro" value="{{descricaoCadastro}}" label-hint="Informe a descrição do cadastro" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-text>
+            <oj-input-text id="descricaoCadastro" value="{{descricaoCadastro}}" required label-hint="Informe a descrição do cadastro" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-text>
             <oj-input-text id="dataInclusao" value="{{dataInclusao}}" label-hint="Informe a data de Inclusão" readonly="true" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-text>
               
             <!-- tipo 1 - Dados Pessoais -->
             <oj-bind-if test="[[idTipoCadastroSelecionado() === 1]]">
               <oj-input-text id="nomePessoa" value="{{nomePessoa}}" label-hint="Informe o nome da Pessoa" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-text>
-              <oj-input-text id="dataNascimento" value="{{dataNascimento}}" label-hint="Informe a data de nascimento" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-text>
+              <oj-input-date id="dataNascimento" value="{{dataNascimento}}" label-hint="Informe a data de nascimento" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-date>
               <oj-input-text id="CPF" value="{{CPF}}" label-hint="Informe o CPF" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-text>
               <oj-input-text id="RG" value="{{RG}}" label-hint="Informe o número do RG" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-text>
               <oj-input-text id="orgaoEmissor" value="{{orgaoEmissor}}" label-hint="Informe o órgão emissor" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-text>
               <oj-input-text id="UF" value="{{UF}}" label-hint="Informe a sigla da UF" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-text>
-              <oj-input-text id="dataEmissaoRG" value="{{dataEmissaoRG}}" label-hint="Informe a data de emissão do RG" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-text>
+              <oj-input-date id="dataEmissaoRG" value="{{dataEmissaoRG}}" label-hint="Informe a data de emissão do RG" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-date>
               <oj-input-text id="nomePai" value="{{nomePai}}" label-hint="Informe o nome do pai" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-text>
               <oj-input-text id="nomeMae" value="{{nomeMae}}" label-hint="Informe o nome da mãe" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-text>
             </oj-bind-if>
@@ -88,15 +96,15 @@
               <oj-input-text id="tituloEleitor" value="{{tituloEleitor}}" label-hint="Informe o número do título de eleitor" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-text>
               <oj-input-text id="zona" value="{{zona}}" label-hint="Informe a zona de votação" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-text>
               <oj-input-text id="sessao" value="{{sessao}}" label-hint="Informe a sessão de votação" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-text>
-              <oj-input-text id="dataEmissaoTituloEleitoral" value="{{dataEmissaoTituloEleitoral}}" label-hint="Informe data de emissão do título eleitoral" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-text>
+              <oj-input-date id="dataEmissaoTituloEleitoral" value="{{dataEmissaoTituloEleitoral}}" label-hint="Informe data de emissão do título eleitoral" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-date>
             </oj-bind-if>
             <!-- tipo 4 - Carteira de Motorista -->
             <oj-bind-if test="[[idTipoCadastroSelecionado() === 4]]">
               <oj-input-text id="CNH" value="{{CNH}}" label-hint="Informe o número da CNH" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-text>
-              <oj-input-text id="validadeCNH" value="{{validadeCNH}}" label-hint="Informe a validade da CNH" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-text>
-              <oj-input-text id="primeiraHabilitacao" value="{{primeiraHabilitacao}}" label-hint="Informe a data da primeira habilitação" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-text>
+              <oj-input-date id="validadeCNH" value="{{validadeCNH}}" label-hint="Informe a validade da CNH" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-date>
+              <oj-input-date id="primeiraHabilitacao" value="{{primeiraHabilitacao}}" label-hint="Informe a data da primeira habilitação" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-date>
               <oj-input-text id="categoriaCNH" value="{{categoriaCNH}}" label-hint="Informe a categoria da CNH" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-text>
-              <oj-input-text id="dataEmissaoCNH" value="{{dataEmissaoCNH}}" label-hint="Informe a data de emissão da CNH" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-text>
+              <oj-input-date id="dataEmissaoCNH" value="{{dataEmissaoCNH}}" label-hint="Informe a data de emissão da CNH" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-date>
             </oj-bind-if>
             <!-- tipo 5 - Cartão do SUS -->
             <oj-bind-if test="[[idTipoCadastroSelecionado() === 5]]">
@@ -110,6 +118,7 @@
             <oj-bind-if test="[[idTipoCadastroSelecionado() === 7]]">
               <oj-input-text id="operadoraPlanoSaude" value="{{operadoraPlanoSaude}}" label-hint="Informe a operadora do plano de saúde" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-text>
               <oj-input-text id="numeroCartao" value="{{numeroCartao}}" label-hint="Informe o número do cartão do plano de saúde" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-text>
+              <oj-input-date id="validadeCarteira" value="{{validadeCarteira}}" label-hint="Informe a validade da carteira" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-date>
             </oj-bind-if>
             <!-- tipo 8 - Veículos -->
             <oj-bind-if test="[[idTipoCadastroSelecionado() === 8]]">
@@ -127,18 +136,34 @@
               <oj-input-text id="usuarioAplicativo" value="{{usuarioAplicativo}}" label-hint="Informe o usuário do aplicativo" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-text>
               <oj-input-text id="senhaAplicativo" value="{{senhaAplicativo}}" label-hint="Informe a senha do aplicativo" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-text>
             </oj-bind-if>
-            <!-- tipo 10 - Diversos s-->
+            <!-- tipo 10 - Internet -->
             <oj-bind-if test="[[idTipoCadastroSelecionado() === 10]]">
               <oj-input-text id="email" value="{{email}}" label-hint="Informe o e-mail" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-text>
-              <oj-input-text id="skype" value="{{skype}}" label-hint="Informe o Skype" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-text>
+              <oj-input-text id="usuarioeMail" value="{{usuarioeMail}}" label-hint="Informe o usuário do e-mail" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-text>
+              <oj-input-text id="senhaeMail" value="{{senhaeMail}}" label-hint="Informe a senha do e-mail" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-text>
+              <oj-input-text id="skype" value="{{skype}}" label-hint="Informe a conta do Skype" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-text>
+              <oj-input-text id="senhaSkype" value="{{senhaSkype}}" label-hint="Informe a senha da conta do Skype" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-text>
               <oj-input-text id="google" value="{{google}}" label-hint="Informe a conta do Google" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-text>
+              <oj-input-text id="senhaGoogle" value="{{senhaGoogle}}" label-hint="Informe a senha da conta do Google" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-text>
+              <oj-input-text id="lojaEcommerce" value="{{lojaEcommerce}}" label-hint="Informe dados da Loja e-Commerce" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-text>
+              <oj-input-text id="usuarioLojaEcommerce" value="{{usuarioLojaEcommerce}}" label-hint="Informe o usuário da Loja e-Commerce" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-text>
+              <oj-input-text id="senhaLojaEcommerce" value="{{senhaLojaEcommerce}}" label-hint="Informe a senha da Loja e-Commerce" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-text>
+              <oj-input-text id="certificadoDigital" value="{{certificadoDigital}}" label-hint="Informe o número do certificado digital" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-text>
+              <oj-input-text id="PIN" value="{{PIN}}" label-hint="Informe o número do PIN" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-text>
+            </oj-bind-if>
+            <!-- tipo 10 - Redes Sociais -->
+            <oj-bind-if test="[[idTipoCadastroSelecionado() === 11]]">
               <oj-input-text id="facebook" value="{{facebook}}" label-hint="Informe a conta do Facebook" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-text>
+              <oj-input-text id="senhaFacebook" value="{{senhaFacebook}}" label-hint="Informe a senha da conta do Facebook" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-text>
               <oj-input-text id="instagram" value="{{instagram}}" label-hint="Informe a conta do Instagram" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-text>
+              <oj-input-text id="senhaInstagram" value="{{senhaInstagram}}" label-hint="Informe a senha da conta do Instagram" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-text>
               <oj-input-text id="linkedIn" value="{{linkedIn}}" label-hint="Informe a conta do LinkedIn" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-text>
+              <oj-input-text id="senhaLinkedIn" value="{{senhaLinkedIn}}" label-hint="Informe a senha da conta do LinkedIn" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-text>
               <oj-input-text id="tvAssinatura" value="{{tvAssinatura}}" label-hint="Informe dados da TV por Assinatura" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-text>
-              <oj-input-text id="internet" value="{{facebook}}" label-hint="Informe dados da internet" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-text>
-              <oj-input-text id="certificadoDigital" value="{{facebook}}" label-hint="Informe o número do certificado digital" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-text>
-              <oj-input-text id="lojasEcommerce" value="{{facebook}}" label-hint="Informe dados da Loja e-Commerce" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-text>
+              <oj-input-text id="usuarioTvAssinatura" value="{{usuarioTvAssinatura}}" label-hint="Informe o usuário da TV por Assinatura" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-text>
+              <oj-input-text id="senhaTvAssinatura" value="{{senhaTvAssinatura}}" label-hint="Informe a senha da TV por Assinatura" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-text>
+              <oj-input-text id="internet" value="{{internet}}" label-hint="Informe dados da internet" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-text>
+              <oj-input-text id="senhaInternet" value="{{senhaInternet}}" label-hint="Informe a senha da internet" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-text>
             </oj-bind-if>
             <oj-button 
               id="addButton" 
@@ -186,14 +211,27 @@
           disabled="[[isTextOrSelectionEmpty]]"
           >Atualizar
         </oj-button>
-        <oj-button 
-          id="removeButton" 
-          style="width: 92%; margin: 0% 4% 2% 4%; background-color: #C80000; border-radius: 5px;" 
-          class="oj-button-lg" 
-          on-oj-action="[[removeSelected]]" 
-          disabled="[[isSelectionEmpty]]"
-          >Excluir
-        </oj-button>
+        <div id="dialogWrapper">
+          <oj-dialog id="modalDialogExcluirCadastro" dialog-title="Deseja excluir ?">
+            <div slot="body">
+              Cadastro: <oj-bind-text value="[[descricaoCadastro()]]"></oj-bind-text>
+            </div>
+            <div slot="footer">
+              <oj-button id="okButton" on-oj-action="[[removeSelected]]">Sim
+              </oj-button>
+              <oj-button id="cancelButton" on-oj-action="[[close]]">Não
+              </oj-button>
+            </div>
+          </oj-dialog>
+          <oj-button 
+            id="removeButton" 
+            style="width: 92%; margin: 0% 4% 2% 4%; background-color: #C80000; border-radius: 5px;" 
+            class="oj-button-lg" 
+            on-oj-action="[[open]]" 
+            disabled="[[isSelectionEmpty]]"
+            >Excluir
+          </oj-button>
+        </div>
       </footer>
     </div>
   </div>

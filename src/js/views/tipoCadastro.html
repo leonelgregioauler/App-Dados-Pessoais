@@ -89,7 +89,7 @@
           </oj-form-layout> -->
         </div>
 
-        <oj-tab-bar edge="end" data="[[navCadastroDataProvider]]" selection="{{selection.path}}">
+        <oj-tab-bar id="acessarCadastro" edge="end" data="[[navCadastroDataProvider]]" selection="{{selection.path}}" display="icons">
           <template slot="itemTemplate" data-oj-as="item">
             <oj-bind-if test="[[item.data.detail]]">
               <li :id="[[item.data.path]]">

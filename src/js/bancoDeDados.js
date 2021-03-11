@@ -50,6 +50,7 @@ define([], function () {
                                                             , numeroCarteiraTrabalho VARCHAR2(100)
                                                             , operadoraPlanoSaude VARCHAR2(100)
                                                             , numeroCartao VARCHAR2(100)
+                                                            , validadeCarteira VARCHAR2(100)
                                                             , placaVeiculo VARCHAR2(100)
                                                             , RENAVAM VARCHAR2(100)
                                                             , nomeBanco VARCHAR2(100)
@@ -61,15 +62,28 @@ define([], function () {
                                                             , usuarioAplicativo VARCHAR2(100)
                                                             , senhaAplicativo VARCHAR2(100)
                                                             , eMail VARCHAR2(100)
+                                                            , usuarioeMail VARCHAR2(100)
+                                                            , senhaeMail VARCHAR2(100)
                                                             , skype VARCHAR2(100)
+                                                            , senhaSkype VARCHAR2(100)
                                                             , google VARCHAR2(100)
+                                                            , senhaGoogle VARCHAR2(100)
                                                             , facebook VARCHAR2(100)
+                                                            , senhaFacebook VARCHAR2(100)
                                                             , instagram VARCHAR2(100)
+                                                            , senhaInstagram VARCHAR2(100)
                                                             , linkedIn VARCHAR2(100)
+                                                            , senhaLinkedIn VARCHAR2(100)
                                                             , tvAssinatura VARCHAR2(100)
+                                                            , usuarioTvAssinatura VARCHAR2(100)
+                                                            , senhaTvAssinatura VARCHAR2(100)
                                                             , internet VARCHAR2(100)
+                                                            , senhaInternet VARCHAR2(100)
+                                                            , lojaEcommerce VARCHAR2(100)
+                                                            , usuarioLojaEcommerce VARCHAR2(100)
+                                                            , senhaLojaEcommerce VARCHAR2(100)
                                                             , certificadoDigital VARCHAR2(100)
-                                                            , lojasEcommerce VARCHAR2(100)
+                                                            , PIN VARCHAR2(100)
                                                             , FOREIGN KEY (idTipoCadastro) REFERENCES TIPOSCADASTROS (idTipoCadastro))`);
         console.warn("Banco de Dados criado");
       });
@@ -308,6 +322,7 @@ define([], function () {
                           , numeroCarteiraTrabalho
                           , operadoraPlanoSaude
                           , numeroCartao
+                          , validadeCarteira
                           , placaVeiculo
                           , RENAVAM
                           , nomeBanco
@@ -319,15 +334,28 @@ define([], function () {
                           , usuarioAplicativo
                           , senhaAplicativo
                           , eMail
+                          , usuarioeMail
+                          , senhaeMail
                           , skype
+                          , senhaSkype
                           , google
+                          , senhaGoogle
                           , facebook
+                          , senhaFacebook
                           , instagram
+                          , senhaInstagram
                           , linkedIn
+                          , senhaLinkedIn
                           , tvAssinatura
+                          , usuarioTvAssinatura
+                          , senhaTvAssinatura
                           , internet
+                          , senhaInternet
+                          , lojaEcommerce
+                          , usuarioLojaEcommerce
+                          , senhaLojaEcommerce
                           , certificadoDigital
-                          , lojasEcommerce ) {
+                          , PIN ) {
     try {
       db = openDatabase(
         "App-Dados-Pessoais",
@@ -364,6 +392,7 @@ define([], function () {
                                  , numeroCarteiraTrabalho
                                  , operadoraPlanoSaude
                                  , numeroCartao
+                                 , validadeCarteira
                                  , placaVeiculo
                                  , RENAVAM
                                  , nomeBanco
@@ -375,15 +404,28 @@ define([], function () {
                                  , usuarioAplicativo
                                  , senhaAplicativo
                                  , eMail
+                                 , usuarioeMail
+                                 , senhaeMail
                                  , skype
+                                 , senhaSkype
                                  , google
+                                 , senhaGoogle
                                  , facebook
+                                 , senhaFacebook
                                  , instagram
+                                 , senhaInstagram
                                  , linkedIn
+                                 , senhaLinkedIn
                                  , tvAssinatura
+                                 , usuarioTvAssinatura
+                                 , senhaTvAssinatura
                                  , internet
+                                 , senhaInternet
+                                 , lojaEcommerce
+                                 , usuarioLojaEcommerce
+                                 , senhaLojaEcommerce
                                  , certificadoDigital
-                                 , lojasEcommerce ) 
+                                 , PIN ) 
             VALUES (${idTipoCadastro}
                 , \'${descricaoCadastro}\'
                 , \'${dataInclusao}\'
@@ -410,6 +452,7 @@ define([], function () {
                 , \'${numeroCarteiraTrabalho}\'
                 , \'${operadoraPlanoSaude}\'
                 , \'${numeroCartao}\'
+                , \'${validadeCarteira}\'
                 , \'${placaVeiculo}\'
                 , \'${RENAVAM}\'
                 , \'${nomeBanco}\'
@@ -421,15 +464,29 @@ define([], function () {
                 , \'${usuarioAplicativo}\'
                 , \'${senhaAplicativo}\'
                 , \'${eMail}\'
+                , \'${usuarioeMail}\'
+                , \'${senhaeMail}\'
                 , \'${skype}\'
+                , \'${senhaSkype}\'
                 , \'${google}\'
+                , \'${senhaGoogle}\'
                 , \'${facebook}\'
+                , \'${senhaFacebook}\'
                 , \'${instagram}\'
+                , \'${senhaInstagram}\'
                 , \'${linkedIn}\'
+                , \'${senhaLinkedIn}\'
                 , \'${tvAssinatura}\'
+                , \'${usuarioTvAssinatura}\'
+                , \'${senhaTvAssinatura}\'
                 , \'${internet}\'
+                , \'${senhaInternet}\'
+                , \'${lojaEcommerce}\'                
+                , \'${usuarioLojaEcommerce}\'
+                , \'${senhaLojaEcommerce}\'
                 , \'${certificadoDigital}\'
-                , \'${lojasEcommerce}\' )`);
+                , \'${PIN}\'
+                )`);
       });
     } catch (err) {
       alert("Erro ao inserir cadastro." + err);
@@ -485,6 +542,7 @@ define([], function () {
                 , numeroCarteiraTrabalho: row["numeroCarteiraTrabalho"]
                 , operadoraPlanoSaude: row["operadoraPlanoSaude"]
                 , numeroCartao: row["numeroCartao"]
+                , validadeCarteira: row["validadeCarteira"]
                 , placaVeiculo: row["placaVeiculo"]
                 , RENAVAM: row["RENAVAM"]
                 , nomeBanco: row["nomeBanco"]
@@ -496,15 +554,28 @@ define([], function () {
                 , usuarioAplicativo: row["usuarioAplicativo"]
                 , senhaAplicativo: row["senhaAplicativo"]
                 , eMail: row["eMail"]
+                , usuarioeMail: row["usuarioeMail"]
+                , senhaeMail: row["senhaeMail"]
                 , skype: row["skype"]
+                , senhaSkype: row["senhaSkype"]
                 , google: row["google"]
+                , senhaGoogle: row["senhaGoogle"]
                 , facebook: row["facebook"]
+                , senhaFacebook: row["senhaFacebook"]
                 , instagram: row["instagram"]
+                , senhaInstagram: row["senhaInstagram"]
                 , linkedIn: row["linkedIn"]
+                , senhaLinkedIn: row["senhaLinkedIn"]
                 , tvAssinatura: row["tvAssinatura"]
+                , usuarioTvAssinatura: row["usuarioTvAssinatura"]
+                , senhaTvAssinatura: row["senhaTvAssinatura"]
                 , internet: row["internet"]
+                , senhaInternet: row["senhaInternet"]
+                , lojaEcommerce: row["lojaEcommerce"]
+                , usuarioLojaEcommerce: row["usuarioLojaEcommerce"]
+                , senhaLojaEcommerce: row["senhaLojaEcommerce"]
                 , certificadoDigital: row["certificadoDigital"]
-                , lojasEcommerce: row["lojasEcommerce"]
+                , PIN: row["PIN"]
               };
             }
           },
@@ -544,6 +615,7 @@ define([], function () {
                            , numeroCarteiraTrabalho
                            , operadoraPlanoSaude
                            , numeroCartao
+                           , validadeCarteira
                            , placaVeiculo
                            , RENAVAM
                            , nomeBanco
@@ -555,15 +627,28 @@ define([], function () {
                            , usuarioAplicativo
                            , senhaAplicativo
                            , eMail
+                           , usuarioeMail
+                           , senhaeMail
                            , skype
+                           , senhaSkype
                            , google
+                           , senhaGoogle
                            , facebook
+                           , senhaFacebook
                            , instagram
+                           , senhaInstagram
                            , linkedIn
+                           , senhaLinkedIn
                            , tvAssinatura
+                           , usuarioTvAssinatura
+                           , senhaTvAssinatura
                            , internet
+                           , senhaInternet
+                           , lojaEcommerce
+                           , usuarioLojaEcommerce
+                           , senhaLojaEcommerce
                            , certificadoDigital
-                           , lojasEcommerce
+                           , PIN
   ) {
     try {
       db = openDatabase(
@@ -602,6 +687,7 @@ define([], function () {
              , numeroCarteiraTrabalho = \'${numeroCarteiraTrabalho}\'
              , operadoraPlanoSaude = \'${operadoraPlanoSaude}\'
              , numeroCartao = \'${numeroCartao}\'
+             , validadeCarteira = \'${validadeCarteira}\'
              , placaVeiculo = \'${placaVeiculo}\'
              , RENAVAM = \'${RENAVAM}\'
              , nomeBanco = \'${nomeBanco}\'
@@ -613,15 +699,28 @@ define([], function () {
              , usuarioAplicativo = \'${usuarioAplicativo}\'
              , senhaAplicativo = \'${senhaAplicativo}\'
              , eMail = \'${eMail}\'
+             , usuarioeMail = \'${usuarioeMail}\'
+             , senhaeMail = \'${senhaeMail}\'
              , skype = \'${skype}\'
+             , senhaSkype = \'${senhaSkype}\'
              , google = \'${google}\'
+             , senhaGoogle = \'${senhaGoogle}\'
              , facebook = \'${facebook}\'
+             , senhaFacebook = \'${senhaFacebook}\'
              , instagram = \'${instagram}\'
+             , senhaInstagram = \'${senhaInstagram}\'
              , linkedIn = \'${linkedIn}\'
+             , senhaLinkedIn = \'${senhaLinkedIn}\'
              , tvAssinatura = \'${tvAssinatura}\'
+             , usuarioTvAssinatura = \'${usuarioTvAssinatura}\'
+             , senhaTvAssinatura = \'${senhaTvAssinatura}\
              , internet = \'${internet}\'
+             , senhaInternet = \'${senhaInternet}\'
+             , lojaEcommerce = \'${lojaEcommerce}\'
+             , usuarioLojaEcommerce = \'${usuarioLojaEcommerce}\'
+             , senhaLojaEcommerce = \'${senhaLojaEcommerce}\'
              , certificadoDigital = \'${certificadoDigital}\'
-             , lojasEcommerce = \'${lojasEcommerce}\'
+             , PIN = \`${PIN}\`
           WHERE idCadastro = ${idCadastro}`
         );
       });

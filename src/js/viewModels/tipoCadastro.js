@@ -168,12 +168,13 @@ define([
       BancoDeDados.insereTipoCadastro( 2, 'PIS', 'xls');
       BancoDeDados.insereTipoCadastro( 3, 'Título Eleitoral', 'ppt');
       BancoDeDados.insereTipoCadastro( 4, 'Carteira de Motorista', 'doc');
-      BancoDeDados.insereTipoCadastro( 5, 'Cartao do SUS', 'folder');
-      BancoDeDados.insereTipoCadastro( 6, 'Carteria de Trabalho', 'pdf');
+      BancoDeDados.insereTipoCadastro( 5, 'Cartão do SUS', 'folder');
+      BancoDeDados.insereTipoCadastro( 6, 'Carteira de Trabalho', 'pdf');
       BancoDeDados.insereTipoCadastro( 7, 'Plano de Saúde', 'xls');
       BancoDeDados.insereTipoCadastro( 8, 'Veículos', 'ppt');
       BancoDeDados.insereTipoCadastro( 9, 'Dados Bancários', 'doc');
-      BancoDeDados.insereTipoCadastro(10, 'Diversos', 'folder');
+      BancoDeDados.insereTipoCadastro(10, 'Internet', 'folder');
+      BancoDeDados.insereTipoCadastro(11, 'Redes Sociais', 'pdf');
       self.consultaTipoCadastro();
     };
 

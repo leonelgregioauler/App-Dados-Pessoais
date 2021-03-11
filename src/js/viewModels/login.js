@@ -84,8 +84,8 @@ define([
         self.messages([
           {
             severity: "error",
-            summary: "SENHAS NÃO CONFEREM !!",
-            detail: "Senhas digitadas são diferentes",
+            summary: "LOGIN",
+            detail: "Senhas digitadas são diferentes.",
           }
         ]);
         self.exibeMensagemAcesso(true);
@@ -97,7 +97,7 @@ define([
         self.messages([
           {
             severity: "confirmation",
-            summary: "IMPORTANTE !!",
+            summary: "IMPORTANTE",
             detail: `Guarde a chave de acesso: ${chaveAcesso} para a troca de senha.`,
           }
         ]);
@@ -146,7 +146,7 @@ define([
           self.messages([
             {
               severity: "error",
-              summary: "Mensagem: ",
+              summary: "LOGIN",
               detail: "Usuário e senha não conferem. Acesso negado."
             }
           ]);
@@ -174,6 +174,7 @@ define([
     } 
 
     self.trocarSenhaUsuario = function() {
+      self.messages([]);
       self.exibeTrocarSenhaUsuario(true);
       self.nomeUsuario("");
       self.senhaUsuario("");
@@ -192,8 +193,8 @@ define([
         self.messages([
           {
             severity: "error",
-            summary: "SENHAS NÃO CONFEREM !!",
-            detail: "Senhas digitadas são diferentes",
+            summary: "TROCA DE SENHA",
+            detail: "Senhas digitadas são diferentes.",
           }
         ]);
         self.exibeMensagemAcesso(true);
@@ -211,7 +212,7 @@ define([
           self.messages([
             {
               severity: "error",
-              summary: "Mensagem: ",
+              summary: "TROCA DE SENHA",
               detail: "Usuário e chave de acesso não conferem. Acesso negado."
             }
           ]);
