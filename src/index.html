@@ -91,16 +91,29 @@
         </oj-bind-if>
         <div class="oj-flex-bar oj-sm-justify-content-center">
           <h2 class="demo-app-name">
-          <oj-bind-if test="[[usuarioAutenticado() == true]]">
-            <oj-bind-text value="[[nomeUsuarioLogado]]"></oj-bind-text>
-            <oj-button 
-              id="logoutButton" 
-              style="width: 60%; margin: 10% 20% 0% 20%; background-color: #979899; border-radius: 5px;"
-              class="oj-button-lg" 
-              on-oj-action="[[logout]]"
-              >Logout
-            </oj-button>
-          </oj-bind-if>
+            <oj-bind-if test="[[usuarioAutenticado() == true]]">
+              <oj-bind-text value="[[nomeUsuarioLogado]]"></oj-bind-text>
+              <oj-tab-bar id="acessarLogin" 
+                          edge="end" 
+                          class="oj-button-lg oj-button oj-component oj-enabled oj-button-outlined-chrome oj-button-text-only oj-complete oj-default"
+                          style="margin: 10% 20% 0% 20%; color: whiite; background-color: #979899; border-radius: 5px;"
+                          data="[[navLoginDataProvider]]" 
+                          selection="{{selection.path}}" 
+                          display="icons">
+                <template slot="itemTemplate" data-oj-as="item">
+                  <oj-bind-if test="[[item.data.detail]]">
+                    <li :id="[[item.data.path]]"
+                        style="border-width: 0;"
+                        on-click="[[logout]]">
+                      <a href="#">Logout
+                        <span style="color: #ffffff"></span>
+                        <!-- <oj-bind-text value="[[item.data.detail.label]]"></oj-bind-text> -->
+                      </a>
+                    </li>
+                  </oj-bind-if>
+                </template>
+              </oj-tab-bar>
+            </oj-bind-if>
           </h2>
         </div>
       </div>

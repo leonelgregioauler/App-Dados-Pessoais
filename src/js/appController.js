@@ -46,7 +46,6 @@ define(['knockout',
       self.nomeTipoCadastro = ko.observable();
       self.exibeNavigationList = ko.observable(true);
       self.exibeLoginUsuario = ko.observable(true);
-
       self.navData = ko.observableArray([]);
 
       document.getElementById('globalBody').addEventListener('announce', announcementHandler, false);
@@ -70,6 +69,7 @@ define(['knockout',
       self.selectionChangedHandler = function(event) {
         self.idTipoCadastro(event.detail.context.data.idTipoCadastro);
         self.nomeTipoCadastro(event.detail.context.data.nomeTipoCadastro);
+        document.getElementById("cadastro").click();
         
         var params = {
           bubbles: true,
@@ -84,16 +84,21 @@ define(['knockout',
 
       self.logout = function() {
         self.usuarioAutenticado(false);
-        self.exibeLoginUsuario(true);
+        //self.exibeLoginUsuario(true);
         self.exibeNavigationList(false);
         self.atualizaNavigationList();
+        //document.getElementById("navList").click();
+        //document.getElementById("logoutButton").click();
+        setTimeout(function() {
+          document.getElementById("navList").querySelectorAll("li")[0].click();
+        }, 1000);
       }
 
       self.navData([
         { path: '', redirect: 'login' },
         { path: 'login', detail: { label: 'Login', iconClass: 'oj-navigationlist-item-icon demo-icon-font-24 demo-home-icon-24' } },
-        { path: 'tipoCadastro', detail: { label: 'Cadastros', iconClass: 'oj-navigationlist-item-icon demo-icon-font-24 demo-library-icon-24'} },
-        { path: 'cadastro', detail: { label: 'Cadastro', iconClass: 'oj-navigationlist-item-icon demo-icon-font-24 demo-edit-icon-24' } }
+        { path: 'tipoCadastro', id: 'menu-tipo-cadastro', detail: { label: 'Cadastros', iconClass: 'oj-navigationlist-item-icon demo-icon-font-24 demo-library-icon-24'} },
+        { path: 'cadastro', id: 'menu-cadastro', detail: { label: 'Cadastro', iconClass: 'oj-navigationlist-item-icon demo-icon-font-24 demo-edit-icon-24' } }
       ]);
       // Router setup
       var router = new CoreRouter(self.navData(), {
@@ -115,6 +120,14 @@ define(['knockout',
         }
       }
 
+      self.voltarCadastro = function (e) {
+        return e.path === 'tipoCadastro'
+      }
+      
+      self.sairSistema = function (e) {
+        return e.path === 'login'
+      }
+      
       self.atualizaNavigationList = function() {
         setTimeout(function() {
           self.navDataProvider = new ArrayDataProvider(self.navData().filter(self.menuLateral), {keyAttributes: "path"});
@@ -122,10 +135,12 @@ define(['knockout',
         }, 500);
       }
       self.navDataProvider = new ArrayDataProvider(self.navData().filter(self.menuLateral), {keyAttributes: "path"});
+      self.navTipoCadastroDataProvider = new ArrayDataProvider(self.navData().filter(self.voltarCadastro), {keyAttributes: "path"});
+      self.navLoginDataProvider = new ArrayDataProvider(self.navData().filter(self.sairSistema), {keyAttributes: "path"});
 
       // Setup the navCadDataProvider with the route cadastro.
-      this.navCadastroDataProvider = new ArrayDataProvider(self.navData.slice(3), {keyAttributes: "path"});
-
+      self.navCadastroDataProvider = new ArrayDataProvider(self.navData.slice(3), {keyAttributes: "path"});
+      
       // Drawer setup
       self.toggleDrawer = function() {
         self.navDrawerOn = true;

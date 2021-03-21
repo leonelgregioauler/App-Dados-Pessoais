@@ -18,7 +18,8 @@ define([
   "ojs/ojlistitemlayout",
   "ojs/ojselectsingle",
   "ojs/ojdialog",
-  "ojs/ojdatetimepicker"
+  "ojs/ojdatetimepicker",
+  "ojs/ojnavigationlist"
 ], function (
   ko,
   app,
@@ -41,6 +42,8 @@ define([
       resolve();
     })
 
+    self.navTipoCadastroDataProvider = app.navTipoCadastroDataProvider;
+    self.selection = app.selection;
     self.idTipoCadastro = app.idTipoCadastro;
     self.nomeTipoCadastro = app.nomeTipoCadastro;
     

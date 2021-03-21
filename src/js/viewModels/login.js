@@ -159,6 +159,10 @@ define([
 
           self.exibeNavigationList(false);
           self.atualizaNavigationList();
+
+          setTimeout(function(){
+            document.getElementById("navList").querySelectorAll("li")[0].click();
+          }, 1000);
           
           self.exibeMensagemAcesso(false);
           self.exibeIncluirUsuario(false);
@@ -169,6 +173,10 @@ define([
           self.senhaUsuario("");
           self.confirmaSenhaUsuario("");
           self.chaveAcesso("");
+
+          setTimeout(function() {
+            document.getElementById("navList").querySelectorAll("li")[0].click();
+          }, 1000);
         }
       }, 500);
     } 

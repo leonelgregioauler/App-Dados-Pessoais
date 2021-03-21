@@ -47,7 +47,24 @@
       ** more information on how to use this pattern.
     -->
     <header role="banner" class="oj-hybrid-applayout-header">
-      <oj-module config="[[headerConfig]]"></oj-module>
+      <oj-module config="[[headerConfig]]" style="width: 50%;"></oj-module>
+      <oj-tab-bar id="acessarTipoCadastro" 
+                  edge="end" 
+                  style="width: 50%;"
+                  data="[[navTipoCadastroDataProvider]]" 
+                  selection="{{selection.path}}" 
+                  display="icons">
+        <template slot="itemTemplate" data-oj-as="item">
+          <oj-bind-if test="[[item.data.detail]]">
+            <li :id="[[item.data.path]]">
+              <a href="#">
+                <span :class="[[item.data.detail.iconClass]]"></span>       Voltar
+                <!-- <oj-bind-text value="[[item.data.detail.label]]"></oj-bind-text> -->
+              </a>
+            </li>
+          </oj-bind-if>
+        </template>
+      </oj-tab-bar>
     </header>
   </div>
   <!-- This is where your main page content will be loaded -->
@@ -73,7 +90,7 @@
 
             <!-- Para todos os cadastros -->
             <oj-input-text id="descricaoCadastro" value="{{descricaoCadastro}}" required label-hint="Informe a descrição do cadastro" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-text>
-            <oj-input-text id="dataInclusao" value="{{dataInclusao}}" label-hint="Informe a data de Inclusão" readonly="true" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-text>
+            <oj-input-text id="dataInclusao" value="{{dataInclusao}}" readonly="true" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-text>
               
             <!-- tipo 1 - Dados Pessoais -->
             <oj-bind-if test="[[idTipoCadastroSelecionado() === 1]]">
@@ -200,39 +217,39 @@
               </li>
             </template>
           </oj-list-view>
+          <footer style="position: absolute; bottom: 20px; width: 100%">
+            <oj-button 
+              id="updateButton" 
+              style="width: 92%; margin: 0% 4% 2% 0%; background-color: rgb(240, 177, 60); border-radius: 5px;" 
+              class="oj-button-lg" 
+              on-oj-action="[[updateSelected]]" 
+              disabled="[[isTextOrSelectionEmpty]]"
+              >Atualizar
+            </oj-button>
+            <div id="dialogWrapper">
+              <oj-dialog id="modalDialogExcluirCadastro" dialog-title="Deseja excluir ?">
+                <div slot="body">
+                  Cadastro: <oj-bind-text value="[[descricaoCadastro()]]"></oj-bind-text>
+                </div>
+                <div slot="footer">
+                  <oj-button id="okButton" on-oj-action="[[removeSelected]]">Sim
+                  </oj-button>
+                  <oj-button id="cancelButton" on-oj-action="[[close]]">Não
+                  </oj-button>
+                </div>
+              </oj-dialog>
+              <oj-button 
+                id="removeButton" 
+                style="width: 92%; margin: 0% 4% 2% 0%; background-color: #C80000; border-radius: 5px;" 
+                class="oj-button-lg" 
+                on-oj-action="[[open]]" 
+                disabled="[[isSelectionEmpty]]"
+                >Excluir
+              </oj-button>
+            </div>
+          </footer>
         </oj-bind-if>
       </div>
-      <footer style="position: absolute; bottom: 20px; width: 100%">
-        <oj-button 
-          id="updateButton" 
-          style="width: 92%; margin: 0% 4% 2% 4%; background-color: rgb(240, 177, 60); border-radius: 5px;" 
-          class="oj-button-lg" 
-          on-oj-action="[[updateSelected]]" 
-          disabled="[[isTextOrSelectionEmpty]]"
-          >Atualizar
-        </oj-button>
-        <div id="dialogWrapper">
-          <oj-dialog id="modalDialogExcluirCadastro" dialog-title="Deseja excluir ?">
-            <div slot="body">
-              Cadastro: <oj-bind-text value="[[descricaoCadastro()]]"></oj-bind-text>
-            </div>
-            <div slot="footer">
-              <oj-button id="okButton" on-oj-action="[[removeSelected]]">Sim
-              </oj-button>
-              <oj-button id="cancelButton" on-oj-action="[[close]]">Não
-              </oj-button>
-            </div>
-          </oj-dialog>
-          <oj-button 
-            id="removeButton" 
-            style="width: 92%; margin: 0% 4% 2% 4%; background-color: #C80000; border-radius: 5px;" 
-            class="oj-button-lg" 
-            on-oj-action="[[open]]" 
-            disabled="[[isSelectionEmpty]]"
-            >Excluir
-          </oj-button>
-        </div>
-      </footer>
     </div>
   </div>
 </div>
