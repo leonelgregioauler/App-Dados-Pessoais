@@ -126,11 +126,16 @@
                           <oj-bind-text value="[[item.data.label]]"></oj-bind-text>
                         </div>
                       </span>
-                      <span slot="leading" :class="[[getIconContainerClass(item.data.icone)]]" role="img">
+                      <oj-avatar slot="leading" size="xs" src="[[item.data.icone]]"></oj-avatar>
+
+
+                      
+                      <!-- <span slot="leading" :class="[[getIconContainerClass(item.data.icone)]]" role="img">
                         <span class="oj-icon-circle-inner">
                           <span :class="[[getIconClass(item.data.icone)]]"></span>
+                          <img src="css/images/carteira-trabalho.jpeg" type="image/x-icon"></img>
                         </span>
-                      </span>
+                      </span> -->
                   </oj-list-item-layout>
                 </li>
               </template>

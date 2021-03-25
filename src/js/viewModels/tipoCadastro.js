@@ -37,7 +37,7 @@ define([
       resolve();
     })
 
-    self.getIconContainerClass = function (type) {
+    /* self.getIconContainerClass = function (type) {
       var styleClasses = 'oj-icon-circle oj-icon-circle-xs';
       switch(type) {
         case 'pdf':
@@ -69,8 +69,8 @@ define([
         default:
           return 'oj-ux-ico-folder';
       }
-    };
-
+    }; */
+    
     self.content = ko.observable('');
     self.disabled = ko.observable(true);
     self.previousElementKey = null;
@@ -164,17 +164,17 @@ define([
     self.connected = function () {
       accUtils.announce("About page loaded.", "assertive");
       document.title = "About";
-      BancoDeDados.insereTipoCadastro( 1, 'Dados Pessoais', 'pdf');
-      BancoDeDados.insereTipoCadastro( 2, 'PIS', 'xls');
-      BancoDeDados.insereTipoCadastro( 3, 'Título Eleitoral', 'ppt');
-      BancoDeDados.insereTipoCadastro( 4, 'Carteira de Motorista', 'doc');
-      BancoDeDados.insereTipoCadastro( 5, 'Cartão do SUS', 'folder');
-      BancoDeDados.insereTipoCadastro( 6, 'Carteira de Trabalho', 'pdf');
-      BancoDeDados.insereTipoCadastro( 7, 'Plano de Saúde', 'xls');
-      BancoDeDados.insereTipoCadastro( 8, 'Veículos', 'ppt');
-      BancoDeDados.insereTipoCadastro( 9, 'Dados Bancários', 'doc');
-      BancoDeDados.insereTipoCadastro(10, 'Internet', 'folder');
-      BancoDeDados.insereTipoCadastro(11, 'Redes Sociais', 'pdf');
+      BancoDeDados.insereTipoCadastro( 1, 'Dados Pessoais', 'css/images/dados-pessoais.jpg');
+      BancoDeDados.insereTipoCadastro( 2, 'PIS', 'css/images/PIS.jpeg');
+      BancoDeDados.insereTipoCadastro( 3, 'Título Eleitoral', 'css/images/titulo-eleitoral.jpeg');
+      BancoDeDados.insereTipoCadastro( 4, 'Carteira de Motorista', 'css/images/carteira-motorista.jpeg');
+      BancoDeDados.insereTipoCadastro( 5, 'Cartão do SUS', 'css/images/SUS.jpeg');
+      BancoDeDados.insereTipoCadastro( 6, 'Carteira de Trabalho', 'css/images/carteira-trabalho.jpg');
+      BancoDeDados.insereTipoCadastro( 7, 'Plano de Saúde', 'css/images/plano-saude.jpeg');
+      BancoDeDados.insereTipoCadastro( 8, 'Veículos', 'css/images/veiculos.jpeg');
+      BancoDeDados.insereTipoCadastro( 9, 'Dados Bancários', 'css/images/dados-bancarios.jpeg');
+      BancoDeDados.insereTipoCadastro(10, 'Internet', 'css/images/internet.jpg');
+      BancoDeDados.insereTipoCadastro(11, 'Redes Sociais', 'css/images/redes-sociais.jpg');
       self.consultaTipoCadastro();
     };
 
