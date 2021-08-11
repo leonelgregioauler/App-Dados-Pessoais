@@ -66,18 +66,7 @@ define(['knockout',
         }, 200);
       };
 
-      self.selectionChangedHandler = function(event) {
-        self.idTipoCadastro(event.detail.context.data.idTipoCadastro);
-        self.nomeTipoCadastro(event.detail.context.data.nomeTipoCadastro);
-        document.getElementById("cadastro").click();
-        
-        var params = {
-          bubbles: true,
-          detail: { data: event.detail.context.data.idTipoCadastro }
-        };
-        document.getElementById('globalBody').dispatchEvent(new CustomEvent('selectionUpdate', params));
-      }
-
+      
       self.exibeUsuarioLogado = function(nomeUsuario) {
         self.nomeUsuarioLogado('Olá, ' + nomeUsuario.charAt(0) + nomeUsuario.toLowerCase().slice(1));
       }
@@ -110,6 +99,10 @@ define(['knockout',
 
       this.selection = new KnockoutRouterAdapter(router);
 
+      self.goToPage = function(page) {
+        router.go({path: page}).then(function () {this.navigated = true;})
+      }
+
       // Setup the navDataProvider with the routes, excluding the first redirected
       // route.
       self.menuLateral = function (e) {
@@ -138,9 +131,6 @@ define(['knockout',
       self.navTipoCadastroDataProvider = new ArrayDataProvider(self.navData().filter(self.voltarCadastro), {keyAttributes: "path"});
       self.navLoginDataProvider = new ArrayDataProvider(self.navData().filter(self.sairSistema), {keyAttributes: "path"});
 
-      // Setup the navCadDataProvider with the route cadastro.
-      self.navCadastroDataProvider = new ArrayDataProvider(self.navData.slice(3), {keyAttributes: "path"});
-      
       // Drawer setup
       self.toggleDrawer = function() {
         self.navDrawerOn = true;

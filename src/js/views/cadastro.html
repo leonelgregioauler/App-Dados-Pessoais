@@ -47,24 +47,13 @@
       ** more information on how to use this pattern.
     -->
     <header role="banner" class="oj-hybrid-applayout-header">
-      <oj-module config="[[headerConfig]]" style="width: 50%;"></oj-module>
-      <oj-tab-bar id="acessarTipoCadastro" 
-                  edge="end" 
-                  style="width: 50%;"
-                  data="[[navTipoCadastroDataProvider]]" 
-                  selection="{{selection.path}}" 
-                  display="icons">
-        <template slot="itemTemplate" data-oj-as="item">
-          <oj-bind-if test="[[item.data.detail]]">
-            <li :id="[[item.data.path]]">
-              <a href="#">
-                <span :class="[[item.data.detail.iconClass]]"></span>       Voltar
-                <!-- <oj-bind-text value="[[item.data.detail.label]]"></oj-bind-text> -->
-              </a>
-            </li>
-          </oj-bind-if>
-        </template>
-      </oj-tab-bar>
+      <oj-module config="[[headerConfig]]" style="width: 100%;"></oj-module>
+      <oj-button 
+        id="voltarButton" 
+        on-oj-action="[[voltar]]"
+        >
+        <span slot='startIcon' class="icon-circle-left"></span>
+      </oj-button>
     </header>
   </div>
   <!-- This is where your main page content will be loaded -->

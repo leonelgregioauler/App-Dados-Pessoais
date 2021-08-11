@@ -42,8 +42,7 @@ define([
       resolve();
     })
 
-    self.navTipoCadastroDataProvider = app.navTipoCadastroDataProvider;
-    self.selection = app.selection;
+    self.navTipoCadastroDataProvider = app.navTipoCadastroDataProvider; 
     self.idTipoCadastro = app.idTipoCadastro;
     self.nomeTipoCadastro = app.nomeTipoCadastro;
     
@@ -112,20 +111,6 @@ define([
     self.dataTipoCadastro = ko.observableArray([]);
     self.exibe = ko.observable(false); 
 
-    /* self.consultaTipoCadastro = function () {
-      self.dataTipoCadastro(
-        BancoDeDados.consultaTipoCadastro("SELECT * FROM TIPOSCADASTROS")
-      );
-      setTimeout(function () {
-        self.exibe(true);
-      }, 500);
-    };
-    self.dataProviderTipoCadastro = new ArrayDataProvider(self.dataTipoCadastro, {
-      keyAttributes: "idTipoCompra",
-    });
-    
-    /*document.getElementById('globalBody').addEventListener('selectionUpdate', selectionHandler, false);*/
-    
     self.idTipoCadastro = self.idTipoCadastro();
     self.nomeTipoCadastro = self.nomeTipoCadastro();
     self.idTipoCadastroSelecionado = ko.observable(self.idTipoCadastro);
@@ -590,6 +575,10 @@ define([
       var value = event.detail.value;
       self.isTextEmpty(value.trim().length === 0);
     }.bind(self);
+
+    self.voltar = function() { 
+      app.goToPage("tipoCadastro");
+    }
 
     self.connected = function () {
       accUtils.announce("About page loaded.", "assertive");

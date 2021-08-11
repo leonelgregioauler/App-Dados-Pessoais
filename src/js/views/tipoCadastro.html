@@ -89,24 +89,6 @@
           </oj-form-layout> -->
         </div>
 
-        <oj-tab-bar id="acessarCadastro" 
-                    style="visibility: hidden; height: 5px"
-                    edge="end" 
-                    data="[[navCadastroDataProvider]]" 
-                    selection="{{selection.path}}" 
-                    display="icons">
-          <template slot="itemTemplate" data-oj-as="item">
-            <oj-bind-if test="[[item.data.detail]]">
-              <li :id="[[item.data.path]]">
-                <a href="#">
-                  <span :class="[[item.data.detail.iconClass]]"></span>
-                  <oj-bind-text value="[[item.data.detail.label]]"></oj-bind-text>
-                </a>
-              </li>
-            </oj-bind-if>
-          </template>
-        </oj-tab-bar>
-
         <oj-bind-if test="[[exibe]]">
           <div id="listviewContainer" class="demo-container">
             <oj-list-view 

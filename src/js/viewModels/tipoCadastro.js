@@ -21,10 +21,10 @@ define([
   function TipoCadastroViewModel() {
     var self = this;
     
-    self.navCadastroDataProvider = app.navCadastroDataProvider;
     self.selection = app.selection;
-    self.selectionChangedHandler = app.selectionChangedHandler;
-
+    self.idTipoCadastro = app.idTipoCadastro;
+    self.nomeTipoCadastro = app.nomeTipoCadastro;
+    
     //self.KnockoutTemplateUtils = KnockoutTemplateUtils;
     self.tipoCadastroSelecionado = ko.observable();  
     
@@ -160,6 +160,12 @@ define([
       var value = event.detail.value;
       self.isTextEmpty(value.trim().length === 0);
     }.bind(self);
+
+    self.selectionChangedHandler = function(event) {
+      self.idTipoCadastro(event.detail.context.data.idTipoCadastro);
+      self.nomeTipoCadastro(event.detail.context.data.nomeTipoCadastro);
+      app.goToPage("cadastro");
+    }
 
     self.connected = function () {
       accUtils.announce("About page loaded.", "assertive");
